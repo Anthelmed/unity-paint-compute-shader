@@ -1,0 +1,22 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+RWTexture2D<float4> Texture;
+vector <float, 4> Color;
+vector <float, 2> UV;
+float Radius;
+
+float Map(float value, float low1, float high1, float low2, float high2) {
+	return low2 + (value - low1) * (high2 - low2) / (high1 - low1);
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+	float Distance = distance(float2(id.x , id.y), UV);
+	float4 AdditionalColor = (Distance <= Radius) ? Color : float4(0.0, 0.0, 0.0, 0.0);
+	AdditionalColor *= Map(Distance, 0.0, Radius, 0.1, 0.0);
+	Texture[id.xy] = Texture[id.xy] + AdditionalColor;
+}
