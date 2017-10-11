@@ -7,7 +7,7 @@ public class BrushScript : MonoBehaviour
 	public static BrushScript instance;
 
 	public ComputeShader computeShader;
-	public Color color;
+	public Color color = Color.cyan;
 	public int layerMask = 1 << 8;
 
 	private int kernel;
@@ -28,7 +28,7 @@ public class BrushScript : MonoBehaviour
 	}
 
 	void Start () 
-	{
+	{	
 		kernel = computeShader.FindKernel("CSMain");
 	}
 

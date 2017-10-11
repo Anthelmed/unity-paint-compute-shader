@@ -9,7 +9,7 @@ public class SplatterParticlesScript : MonoBehaviour
 	public ParticleSystem splatterParticles;
 	private ParticleSystem.MainModule particleSystemMain;
 
-	private Color particleColor = Color.white;
+	private Color particleColor = Color.cyan;
 	public Color ParticleColor {
 		get {
 			return particleColor;
