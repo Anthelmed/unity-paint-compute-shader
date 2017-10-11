@@ -5,14 +5,13 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ObjectScript : MonoBehaviour {
 
-	public Color decalColor;
-	public RenderTexture decalTexture;
+	public RenderTexture paintingTexture;
 
 	void Start () {
-		decalTexture = new RenderTexture(1024, 1024, 24);
-		decalTexture.enableRandomWrite = true;
-		decalTexture.Create();
+		paintingTexture = new RenderTexture(1024, 1024, 24);
+		paintingTexture.enableRandomWrite = true;
+		paintingTexture.Create();
 
-		GetComponent<Renderer>().sharedMaterial.SetTexture("_DecalTex", decalTexture);
+		GetComponent<Renderer>().sharedMaterial.SetTexture("_PaintingTex", paintingTexture);
 	}
 }
